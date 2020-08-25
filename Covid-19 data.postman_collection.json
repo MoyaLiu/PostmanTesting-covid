@@ -1,0 +1,481 @@
+{
+	"info": {
+		"_postman_id": "c44bc33e-e844-4204-9e5b-7cbf39645a03",
+		"name": "Covid-19 data",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getDailyReport",
+			"item": [
+				{
+					"name": "getDailyReportByCountryName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2b07e151-ebf5-4daa-a0e8-eddaa788708e",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Check response size\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.eql(1);",
+									"});",
+									"",
+									"pm.test(\"The day is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    console.log(jsonData)",
+									"    pm.expect(jsonData[0].date).to.eql(\"2020-08-01\");",
+									"});",
+									"",
+									"pm.test(\"The day is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    console.log(jsonData)",
+									"    pm.expect(jsonData[0].country).to.eql(\"New Zealand\");",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-RapidAPI-Host",
+								"value": "{{X-RapidAPI-Host}}",
+								"type": "text"
+							},
+							{
+								"key": "X-RapidAPI-Key",
+								"value": "{{x-rapidapi-key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://covid-19-data.p.rapidapi.com/report/country/name?date=2020-08-01&name=New Zealand",
+							"protocol": "https",
+							"host": [
+								"covid-19-data",
+								"p",
+								"rapidapi",
+								"com"
+							],
+							"path": [
+								"report",
+								"country",
+								"name"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2020-08-01"
+								},
+								{
+									"key": "name",
+									"value": "New Zealand"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getDailyReportByCountryName-futureday",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1516bb95-26c2-453d-8b32-f9d5c4b9b83c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Check response size\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.eql(1);",
+									"});",
+									"",
+									"pm.test(\"The day is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    console.log(jsonData)",
+									"    pm.expect(jsonData[0].date).to.eql(\"2021-08-30\");",
+									"});",
+									"",
+									"pm.test(\"The day is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    console.log(jsonData)",
+									"    pm.expect(jsonData[0].country).to.eql(\"New Zealand\");",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-RapidAPI-Host",
+								"type": "text",
+								"value": "{{X-RapidAPI-Host}}"
+							},
+							{
+								"key": "X-RapidAPI-Key",
+								"type": "text",
+								"value": "{{x-rapidapi-key}}"
+							}
+						],
+						"url": {
+							"raw": "https://covid-19-data.p.rapidapi.com/report/country/name?date=2021-08-30&name=New Zealand",
+							"protocol": "https",
+							"host": [
+								"covid-19-data",
+								"p",
+								"rapidapi",
+								"com"
+							],
+							"path": [
+								"report",
+								"country",
+								"name"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2021-08-30"
+								},
+								{
+									"key": "name",
+									"value": "New Zealand"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getDailyReportByCountryName-wrongday",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c2fdca16-83cd-41a6-a40d-6c0a1890836b",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-RapidAPI-Host",
+								"type": "text",
+								"value": "{{X-RapidAPI-Host}}"
+							},
+							{
+								"key": "X-RapidAPI-Key",
+								"type": "text",
+								"value": "{{x-rapidapi-key}}"
+							}
+						],
+						"url": {
+							"raw": "https://covid-19-data.p.rapidapi.com/report/country/name?date=2021-08-30123&name=New Zealand",
+							"protocol": "https",
+							"host": [
+								"covid-19-data",
+								"p",
+								"rapidapi",
+								"com"
+							],
+							"path": [
+								"report",
+								"country",
+								"name"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2021-08-30123"
+								},
+								{
+									"key": "name",
+									"value": "New Zealand"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getDailyReportByCountryName-wrongCountryName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c4b1480f-f7a6-4d8d-971b-264422d50d16",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-RapidAPI-Host",
+								"type": "text",
+								"value": "{{X-RapidAPI-Host}}"
+							},
+							{
+								"key": "X-RapidAPI-Key",
+								"type": "text",
+								"value": "{{x-rapidapi-key}}"
+							}
+						],
+						"url": {
+							"raw": "https://covid-19-data.p.rapidapi.com/report/country/name?date=2021-08-30123&name=New Zealands",
+							"protocol": "https",
+							"host": [
+								"covid-19-data",
+								"p",
+								"rapidapi",
+								"com"
+							],
+							"path": [
+								"report",
+								"country",
+								"name"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2021-08-30123"
+								},
+								{
+									"key": "name",
+									"value": "New Zealands"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getDailyReportTotals",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6e3e8579-1328-4c9f-b584-989c4f1fa894",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Check response size\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.eql(1);",
+									"});",
+									"",
+									"pm.test(\"The day is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    console.log(jsonData)",
+									"    pm.expect(jsonData[0].date).to.eql(\"2020-08-08\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-RapidAPI-Host",
+								"value": "{{X-RapidAPI-Host}}",
+								"type": "text"
+							},
+							{
+								"key": "x-rapidapi-key",
+								"value": "{{x-rapidapi-key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://covid-19-data.p.rapidapi.com/report/totals?date=2020-08-08",
+							"protocol": "https",
+							"host": [
+								"covid-19-data",
+								"p",
+								"rapidapi",
+								"com"
+							],
+							"path": [
+								"report",
+								"totals"
+							],
+							"query": [
+								{
+									"key": "date-format",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "date",
+									"value": "2020-08-08"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "GetLatest",
+			"item": [
+				{
+					"name": "getLatestCountryDataByCode",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b4546888-e50b-4101-86da-59dc26c2697d",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Check response size\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.eql(1);",
+									"});",
+									"",
+									"pm.test(\"The country code is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    console.log(jsonData)",
+									"    pm.expect(jsonData[0].code).to.eql(\"NZ\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-RapidAPI-Host",
+								"value": "{{X-RapidAPI-Host}}",
+								"type": "text"
+							},
+							{
+								"key": "X-RapidAPI-Key",
+								"value": "{{x-rapidapi-key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://covid-19-data.p.rapidapi.com/country/code?code=nz",
+							"protocol": "https",
+							"host": [
+								"covid-19-data",
+								"p",
+								"rapidapi",
+								"com"
+							],
+							"path": [
+								"country",
+								"code"
+							],
+							"query": [
+								{
+									"key": "code",
+									"value": "nz"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "GetListOfCountries",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "894d0e77-f0db-4ed2-bef9-b2c37cacff24",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-rapidapi-host",
+						"value": "{{X-RapidAPI-Host}}",
+						"type": "text"
+					},
+					{
+						"key": "x-rapidapi-key",
+						"value": "{{x-rapidapi-key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://covid-19-data.p.rapidapi.com/help/countries?format=json",
+					"protocol": "https",
+					"host": [
+						"covid-19-data",
+						"p",
+						"rapidapi",
+						"com"
+					],
+					"path": [
+						"help",
+						"countries"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
